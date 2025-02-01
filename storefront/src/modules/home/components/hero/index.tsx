@@ -14,19 +14,25 @@ const Hero = () => {
           >
            CartGuppy Demo
           </Heading>
-          <Heading
-            level="h2"
-            className="text-3xl leading-10 text-ui-fg-subtle font-normal"
-          >
-            Need help customizing your store?
+          <Heading level="h2" className="text-3xl leading-10 text-ui-fg-subtle font-normal">
+           
+           
+          
+            Powered by Medusa and Next.js
           </Heading>
         </span>
+         {/* Link Button */}
+         <a href="/store">
+          <Button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Go to store
+          </Button>
+        </a>
         <a
-          href="https://funkyton.com/medusajs-2-0-is-finally-here/"
+          href="https://backend-production-417c.up.railway.app/app"
           target="_blank"
         >
           <h1 style={{ textDecoration: "underline" }}>
-            Visit the tutorial
+            Admin login
           </h1>
         </a>
       </div>
