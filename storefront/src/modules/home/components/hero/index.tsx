@@ -3,7 +3,9 @@ import { Button, Heading } from "@medusajs/ui"
 
 const Hero = () => {
   return (
-    <div className="h-[75vh] w-full border-b border-ui-border-base relative bg-ui-bg-subtle">
+    <div className="h-[75vh] w-full border-b border-ui-border-base relative bg-ui-bg-subtle -bg-subtle bg-cover bg-center"
+      style={{ backgroundImage: 'url(https://wallpaper.dog/large/10812310.png)' }}
+    >
       <div className="absolute inset-0 z-10 flex flex-col justify-center items-center text-center small:p-32 gap-6">
         <span>
           <Heading
