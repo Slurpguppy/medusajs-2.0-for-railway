@@ -32,6 +32,7 @@ const medusaConfig = {
     databaseLogging: false,
     redisUrl: REDIS_URL,
     workerMode: WORKER_MODE,
+    currency_code: "USD", 
     http: {
       adminCors: ADMIN_CORS,
       authCors: AUTH_CORS,
