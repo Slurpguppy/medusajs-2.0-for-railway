@@ -29,3 +29,10 @@ SENDGRID_FROM=
 
 
 # To run localy, remove .template from .env, the copy this file to .env.
+# if you get npm install error, use :npm install --legacy-peer-deps: insted
+
+#run in order.
+
+#npm run build
+#npm run start
+

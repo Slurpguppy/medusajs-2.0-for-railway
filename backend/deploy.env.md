@@ -5,7 +5,7 @@ STORE_CORS=http://localhost:8000,https://docs.medusajs.com
 AUTH_CORS=http://localhost:7000,http://localhost:7001,https://docs.medusajs.com
 JWT_SECRET=supersecret
 COOKIE_SECRET=supersecret
-DATABASE_URL=postgresql://postgres:kuAWQhHGODPtLItYwncCHydNBqUHYaqu@junction.proxy.rlwy.net:31513/railway
+DATABASE_URL=postgres://postgres:postgres@localhost:5432/medusa # Make sure this database exist - or change connection string to an online database
 
 MEDUSA_ADMIN_EMAIL=admin@yourmail.com
 MEDUSA_ADMIN_PASSWORD=supersecret
@@ -25,7 +25,3 @@ SENDGRID_FROM=
 # Meilisearch Configuration (Optional)
 # MEILISEARCH_HOST=your-meilisearch-host # e.g. http://localhost:7700
 # MEILISEARCH_API_KEY=your-master-key
-
-
-
-# To run localy, remove .template from .env, the copy this file to .env.
