@@ -14,6 +14,23 @@ import ProductPrice from "../product-price"
 import { addToCart } from "@lib/data/cart"
 import { HttpTypes } from "@medusajs/types"
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faRepeat, faTruck } from "@fortawesome/free-solid-svg-icons"
+
+const handleDeliveryDaySelect = (day: string) => {
+  const deliveryDayElement = document.getElementById('delivery-day');
+  if (deliveryDayElement) {
+    deliveryDayElement.textContent = `Selected day: ${day}`;
+  }
+};
+
+const handleDeliveryFrequencySelect = (frequency: string) => {
+  const deliveryFrequencyElement = document.getElementById('delivery-frequency');
+  if (deliveryFrequencyElement) {
+    deliveryFrequencyElement.textContent = `Selected frequency: ${frequency}`;
+  }
+};
+
 type ProductActionsProps = {
   product: HttpTypes.StoreProduct
   region: HttpTypes.StoreRegion
@@ -110,6 +127,64 @@ export default function ProductActions({
 
   return (
     <>
+    <style jsx>{`
+    .dropdown {
+        position: relative;
+        display: inline-block;
+        margin-bottom: 20px;
+    }
+
+    .dropbtn {
+        background-color: #3498db;
+        color: white;
+        padding: 10px 15px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        width: 100%;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: white;
+        min-width: 150px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        border-radius: 5px;
+        overflow: hidden;
+        z-index: 1;
+    }
+
+    .dropdown-content a {
+        color: black;
+        padding: 10px;
+        display: block;
+        text-decoration: none;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #f1f1f1;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+        background-color: #2980b9;
+    }
+
+    .selected-option {
+        margin-top: 10px;
+        padding: 10px;
+        background-color: #f1f1f1;
+        border-radius: 5px;
+        color: #333;
+        font-size: 14px;
+    }
+`}</style>
       <div className="flex flex-col gap-y-2" ref={actionsRef}>
         <div>
           {(product.variants?.length ?? 0) > 1 && (
@@ -132,6 +207,79 @@ export default function ProductActions({
             </div>
           )}
         </div>
+        <span style={{ display: "block" }}></span>
+
+        <div className="dropdown">
+    <button className="dropbtn">
+        <FontAwesomeIcon icon={faTruck} style={{ color: "#fff", marginRight: "8px" }} />
+        Deliver On:
+    </button>
+    <div className="dropdown-content">
+        <a href="#" onClick={() => handleDeliveryDaySelect("Monday")}>
+            <FontAwesomeIcon icon={faTruck} style={{ color: "#black", marginRight: "8px" }} />
+            Monday
+        </a>
+        <a href="#" onClick={() => handleDeliveryDaySelect("Tuesday")}>
+            <FontAwesomeIcon icon={faTruck} style={{ color: "#black", marginRight: "8px" }} />
+            Tuesday
+        </a>
+        <a href="#" onClick={() => handleDeliveryDaySelect("Wednesday")}>
+            <FontAwesomeIcon icon={faTruck} style={{ color: "#black", marginRight: "8px" }} />
+            Wednesday
+        </a>
+        <a href="#" onClick={() => handleDeliveryDaySelect("Thursday")}>
+            <FontAwesomeIcon icon={faTruck} style={{ color: "#black", marginRight: "8px" }} />
+            Thursday
+        </a>
+        <a href="#" onClick={() => handleDeliveryDaySelect("Friday")}>
+            <FontAwesomeIcon icon={faTruck} style={{ color: "#black", marginRight: "8px" }} />
+            Friday
+        </a>
+    </div>
+    <div className="selected-option" id="delivery-day">
+        Selected day: None
+    </div>
+</div>
+
+<div className="dropdown">
+    <button className="dropbtn">
+        <FontAwesomeIcon icon={faRepeat} style={{ color: "#fff", marginRight: "8px" }} />
+        Delivery frequency:
+    </button>
+    <div className="dropdown-content">
+        <a href="#" onClick={() => handleDeliveryFrequencySelect("This Week")}>
+            <FontAwesomeIcon icon={faRepeat} style={{ color: "#black", marginRight: "8px" }} />
+            This Week
+        </a>
+        <a href="#" onClick={() => handleDeliveryFrequencySelect("Next Week")}>
+            <FontAwesomeIcon icon={faRepeat} style={{ color: "#black", marginRight: "8px" }} />
+            Next Week
+        </a>
+        <a href="#" onClick={() => handleDeliveryFrequencySelect("Every Week")}>
+            <FontAwesomeIcon icon={faRepeat} style={{ color: "#black", marginRight: "8px" }} />
+            Every Week
+        </a>
+        <a href="#" onClick={() => handleDeliveryFrequencySelect("Every other Week")}>
+            <FontAwesomeIcon icon={faRepeat} style={{ color: "#black", marginRight: "8px" }} />
+            Every other Week
+        </a>
+        <a href="#" onClick={() => handleDeliveryFrequencySelect("Every 3 Weeks")}>
+            <FontAwesomeIcon icon={faRepeat} style={{ color: "#black", marginRight: "8px" }} />
+            Every 3 Weeks
+        </a>
+        <a href="#" onClick={() => handleDeliveryFrequencySelect("Once per month")}>
+            <FontAwesomeIcon icon={faRepeat} style={{ color: "#black", marginRight: "8px" }} />
+            Once per month
+        </a>
+    </div>
+    <div className="selected-option" id="delivery-frequency">
+        Selected frequency: None
+    </div>
+</div>
+
+    <span style={{ display: "block" }}></span>
+    <span style={{ display: "block" }}></span>
+    <span style={{ display: "block" }}></span>
 
         <ProductPrice product={product} variant={selectedVariant} />
 
@@ -147,7 +295,7 @@ export default function ProductActions({
             ? "Select variant"
             : !inStock
             ? "Out of stock"
-            : "Add to cart"}
+            : "Add to order"}
         </Button>
         <MobileActions
           product={product}
@@ -161,6 +309,7 @@ export default function ProductActions({
           optionsDisabled={!!disabled || isAdding}
         />
       </div>
+      <p style={{ fontWeight: "light", fontSize: "15px" }}>Click 'Add to order' to add the item to your order. No need to finalize; items will be delivered unless removed. Enjoy!</p>
     </>
   )
 }

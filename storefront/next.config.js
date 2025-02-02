@@ -14,6 +14,7 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
+    domains: ['bucket-production-6a25.up.railway.app'],
     remotePatterns: [
       {
         protocol: "http",
