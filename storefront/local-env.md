@@ -21,3 +21,7 @@ NEXT_PUBLIC_SEARCH_API_KEY=your_search_key_here
 NEXT_PUBLIC_INDEX_NAME=products
 
 #To run localy, remove .template, from .env.local.template
+
+
+
+#test
